@@ -1,0 +1,210 @@
+/* Kira Kira's site: the app's palette and type, one neon gradient on the
+   wordmark, everything else quiet. Fonts are subset to Latin and served
+   from here, so a visit reaches no one else. */
+
+@font-face {
+  font-family: "Manrope";
+  src: url(fonts/Manrope-Regular.woff2) format("woff2");
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Manrope";
+  src: url(fonts/Manrope-Bold.woff2) format("woff2");
+  font-weight: 700;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Manrope";
+  src: url(fonts/Manrope-ExtraBold.woff2) format("woff2");
+  font-weight: 800;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Unbounded";
+  src: url(fonts/Unbounded-Bold.woff2) format("woff2");
+  font-weight: 700;
+  font-display: swap;
+}
+
+:root {
+  color-scheme: dark;
+  --bg: #0a0c0b;
+  --line: #242b27;
+  --text: #f1f5f2;
+  --muted: #8c968f;
+  --accent: #45f59a;
+  --neon: linear-gradient(100deg, #d8ff3c 0%, #45f59a 55%, #16d9c0 100%);
+  --glow: rgba(69, 245, 154, 0.28);
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color-scheme: light;
+    --bg: #f3f6f4;
+    --line: #e0e6e2;
+    --text: #0b120e;
+    --muted: #67716b;
+    --accent: #0b9a50;
+    --neon: linear-gradient(100deg, #5fa800 0%, #0a9e55 55%, #078f86 100%);
+    --glow: rgba(11, 154, 80, 0.18);
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0 20px;
+  background: var(--bg);
+  color: var(--text);
+  font: 400 17px/1.6 "Manrope", system-ui, -apple-system, "Segoe UI",
+    sans-serif;
+}
+
+.page {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 40px 0 56px;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.brand a {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+}
+
+.brand img {
+  width: 44px;
+  height: 44px;
+  border-radius: 11px;
+  box-shadow: 0 0 28px var(--glow);
+}
+
+.wordmark {
+  font-family: "Unbounded", "Manrope", sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  background: var(--neon);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+h1 {
+  margin: 72px 0 20px;
+  font-weight: 800;
+  font-size: clamp(34px, 7vw, 52px);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+}
+
+.lead {
+  max-width: 34em;
+  margin: 0 0 28px;
+  font-size: 19px;
+  color: var(--muted);
+}
+
+.soon {
+  display: inline-block;
+  margin: 0;
+  padding: 8px 16px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.soon::before {
+  content: "";
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  margin-right: 10px;
+  vertical-align: 1px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 10px var(--accent);
+}
+
+section {
+  margin-top: 64px;
+}
+
+.features {
+  border-top: 1px solid var(--line);
+}
+
+.feature {
+  padding: 24px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+h2 {
+  margin: 0 0 8px;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.feature p,
+.free p {
+  margin: 0;
+}
+
+footer {
+  margin-top: 72px;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+footer p {
+  margin: 6px 0;
+}
+
+/* The privacy policy: a document, read top to bottom. */
+
+.doc h1 {
+  margin-top: 56px;
+  font-size: clamp(30px, 6vw, 40px);
+}
+
+.doc .date {
+  margin: -8px 0 32px;
+  color: var(--muted);
+}
+
+.doc h2 {
+  margin-top: 40px;
+  font-size: 19px;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--text);
+}
+
+.doc ul {
+  padding-left: 20px;
+}
+
+.doc li {
+  margin: 10px 0;
+}
