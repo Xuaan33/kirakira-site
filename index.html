@@ -2,52 +2,276 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Kira Kira — compare prices on the shelf and online</title>
-<meta name="description" content="Kira Kira is a free price-comparison app for shoppers in Malaysia: scan shelf tags to find the better deal, and see what a product costs on each online platform.">
-<meta property="og:title" content="Kira Kira">
-<meta property="og:description" content="A free price-comparison app for shoppers in Malaysia, on the shelf and online.">
-<meta property="og:image" content="https://xuaan33.github.io/kirakira-site/icon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Kira Kira — which one's the better deal?</title>
+<meta name="description" content="Kira Kira is a free price-comparison app for shoppers in Malaysia: snap the shelf tags to see the better deal per litre, per kg or per piece, and compare phones across Shopee, Lazada and brand stores.">
+<link rel="canonical" href="https://xuaan33.github.io/kirakira-site/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://xuaan33.github.io/kirakira-site/">
+<meta property="og:title" content="Kira Kira — which one's the better deal?">
+<meta property="og:description" content="Snap the price tags; Kira Kira tells you which to buy. Free, for shoppers in Malaysia.">
+<meta property="og:image" content="https://xuaan33.github.io/kirakira-site/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="favicon-32.png" sizes="32x32">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="stylesheet" href="style.css">
+<meta name="theme-color" content="#0a0c0b" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f3f6f4" media="(prefers-color-scheme: light)">
+<script src="shelf.js" defer></script>
 </head>
 <body>
-<div class="page">
-  <header class="brand">
-    <a href="./"><img src="icon.png" alt=""><span class="wordmark">Kira Kira</span></a>
-  </header>
-
-  <main>
-    <h1>Snap a price tag.<br>See the better deal.</h1>
-    <p class="lead">Kira Kira is a free price-comparison app for shoppers in Malaysia, on the shelf and online.</p>
-    <p class="soon">Coming soon to Google Play</p>
-
-    <section class="features">
-      <div class="feature">
-        <h2>On the shelf</h2>
-        <p>Point your camera at the price tags. Kira Kira reads each price and size, works out what you pay per 100&nbsp;ml, per kg or per piece, and tells you which is cheaper, even when a deal like “2 untuk RM65” isn't. Tags are read on your phone; photos never leave it.</p>
+  <nav class="nav" aria-label="Main">
+    <div class="wrap">
+      <a class="brand" href="./"><img src="icon.png" alt=""><span class="wordmark neon-text">Kira Kira</span></a>
+      <div class="nav-links">
+        <a href="#what">What it does</a>
+        <a href="#how">How it works</a>
+        <a href="#faq">Questions</a>
       </div>
-      <div class="feature">
-        <h2>Online</h2>
-        <p>Search for a phone or gadget and see its price on each platform, such as Shopee, Lazada and the brand's own store, with the cheapest official sellers by name. Tap one to open it in the platform's app.</p>
+      <span class="pill">Coming soon</span>
+    </div>
+  </nav>
+
+  <div class="wrap">
+    <header class="hero">
+      <div>
+        <p class="eyebrow">( For shoppers in Malaysia )</p>
+        <h1>Which one's the better deal?</h1>
+        <p class="lead">Snap the price tags. Kira Kira works out the price <strong>per litre, per kg or per piece</strong>, sees through deals that aren't, and tells you which to buy. Shopping for a phone? It lines up <strong>Shopee, Lazada</strong> and the brand's own store.</p>
+        <div class="actions">
+          <span class="pill">Coming soon to Google Play</span>
+          <span class="pill">Coming soon to the App Store</span>
+          <a href="#what">See what it does ↓</a>
+        </div>
       </div>
-      <div class="feature">
-        <h2>In your language</h2>
-        <p>English, Bahasa Melayu and 中文.</p>
+
+      <div class="demo" aria-label="Try it: three price tags on a shelf">
+        <p class="eyebrow">( Pick a shelf )</p>
+        <div class="switch" role="group" aria-label="Pick a shelf">
+          <button type="button" id="shelf-milk" data-shelf="milk" aria-pressed="true">Fresh milk</button>
+          <button type="button" id="shelf-shampoo" data-shelf="shampoo" aria-pressed="false">Shampoo</button>
+          <button type="button" id="shelf-rice" data-shelf="rice" aria-pressed="false">Beras</button>
+        </div>
+        <div class="shelf">
+          <div class="tags" id="tags"></div>
+          <div class="frame" id="frame" aria-hidden="true"></div>
+          <div class="scanline" aria-hidden="true"></div>
+        </div>
+        <div class="verdict" aria-live="polite">
+          <p class="verdict-pick" id="pick"></p>
+          <p class="verdict-unit neon-text" id="unit"></p>
+          <p class="verdict-why" id="why"></p>
+        </div>
+      </div>
+    </header>
+
+    <section id="what">
+      <div class="section-head">
+        <p class="eyebrow">( What it does )</p>
+        <h2>Everything the price tag doesn't say.</h2>
+        <p>Big packs, small packs, 2-for deals, member prices: the cheapest-looking tag often isn't. Kira Kira does the maths at the shelf.</p>
+      </div>
+
+      <div class="bento">
+        <article class="tile t-scan">
+          <div>
+            <h3>Reads the tag for you</h3>
+            <p>Point the camera at a tag, or a whole row of them. Kira Kira reads the price and the size, and knows the words on Malaysian tags.</p>
+          </div>
+          <div class="words" aria-label="Tag words it understands">
+            <span>2 untuk RM65</span><span>Beli 2 Percuma 1</span><span>Item kedua 50%</span><span>Harga Ahli</span><span>Jimat</span><span>Harga asal</span><span>RM12.90/kg</span><span>6 x 250ml</span>
+          </div>
+          <div class="scan-crop"><img src="shots/dark/scan.png" alt="Kira Kira's scanner reading a fresh milk tag: RM 7.49, 1 L" loading="lazy"></div>
+        </article>
+
+        <article class="tile t-bars">
+          <div>
+            <h3>The same amount, side by side</h3>
+            <p>Three sizes of fresh milk, priced as if you bought 2 L of each.</p>
+          </div>
+          <div class="bars demo-ui">
+            <div class="bar win"><span>B · 1 × 2 L</span><i style="width: 93.4%"></i><b>RM 13.99</b></div>
+            <div class="bar"><span>C · 2 for 14.50</span><i style="width: 96.8%"></i><b>RM 14.50</b></div>
+            <div class="bar"><span>A · 2 × 1 L</span><i style="width: 100%"></i><b>RM 14.98</b></div>
+          </div>
+        </article>
+
+        <article class="tile t-deal">
+          <div>
+            <h3>Sees through deals</h3>
+            <p>A “2 untuk” isn't always cheaper. When a deal costs more per litre than a plain pack, Kira Kira says so, in one line.</p>
+          </div>
+          <div class="deal-note demo-ui">
+            <span class="chip trap">2 untuk RM14.50 · costs 4% more</span>
+            <span class="chip best">Pick B: 2 L for RM 13.99</span>
+          </div>
+        </article>
+
+        <article class="tile t-online">
+          <div>
+            <h3>Online, too</h3>
+            <p>Search a phone or gadget and see each platform's three cheapest official sellers, by name. Tap one to open it in the Shopee or Lazada app.</p>
+          </div>
+          <div class="mini-offers demo-ui" aria-label="Example: iPhone 17 Pro Max, 256GB">
+            <div class="mini-platform">
+              <span class="letter">S</span>
+              <div>
+                <p class="platform">Shopee</p>
+                <ul>
+                  <li>Nova Gadgets <span class="chip best">RM 5,024</span><small>Mall · cheapest</small></li>
+                  <li>Orbit Mobile <span class="chip">RM 5,174</span><small>Mall</small></li>
+                </ul>
+              </div>
+            </div>
+            <div class="mini-platform">
+              <span class="letter">L</span>
+              <div>
+                <p class="platform">Lazada</p>
+                <ul>
+                  <li>Mega Mobile <span class="chip">RM 5,249</span><small>LazMall</small></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="tile t-langs">
+          <div>
+            <h3>In your language</h3>
+            <p>The whole app, and every verdict, in three.</p>
+          </div>
+          <dl class="langs demo-ui">
+            <div><dt>English</dt><dd>Pick B: 2 L for RM 13.99</dd></div>
+            <div><dt>Melayu</dt><dd>Pilih B: 2 L pada RM 13.99</dd></div>
+            <div><dt>中文</dt><dd>选 B：2 L，RM 13.99</dd></div>
+          </dl>
+        </article>
+      </div>
+
+      <div class="facts">
+        <div class="fact"><b>Read on your phone</b><span>Photos never leave it.</span></div>
+        <div class="fact"><b>No account</b><span>Open it and scan.</span></div>
+        <div class="fact"><b>No ads</b><span>Nothing to buy in the app.</span></div>
+        <div class="fact"><b>Your prices, unbent</b><span>Commission never changes the order.</span></div>
       </div>
     </section>
 
-    <section class="free">
-      <h2>How it stays free</h2>
-      <p>No ads, no subscriptions and nothing to buy in the app. When you buy through a link in Kira Kira, we may earn a commission from the platform. It never changes your price, or the order the prices are shown in.</p>
+    <section id="how">
+      <div class="section-head">
+        <p class="eyebrow">( How it works )</p>
+        <h2>Three taps at the shelf.</h2>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="phone camera"><div class="screen">
+            <img class="shot-dark" src="shots/dark/scan.png" alt="The scanner reading a tag: RM 7.49 for 1 L" loading="lazy">
+            <img class="shot-light" src="shots/dark/scan.png" alt="" loading="lazy">
+            <div class="island"></div><div class="status"><span>9:41</span><svg viewBox="0 0 42 12" aria-hidden="true"><rect x="0" y="7" width="3" height="5" rx="1"/><rect x="5" y="5" width="3" height="7" rx="1"/><rect x="10" y="2.5" width="3" height="9.5" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/><rect x="24" y="1" width="16" height="10" rx="3" fill="none" stroke="currentColor" stroke-width="1.4"/><rect x="26" y="3" width="11" height="6" rx="1.5"/></svg></div>
+          </div></div>
+          <span class="num">1</span>
+          <div><h3>Snap each tag</h3><p>One at a time, or a whole row at once. Pick one, or add them all.</p></div>
+        </div>
+        <div class="step">
+          <div class="phone"><div class="screen">
+            <img class="shot-dark" src="shots/dark/result.png" alt="The result: pick B, 2 L for RM 13.99, RM 7.00 per litre" loading="lazy">
+            <img class="shot-light" src="shots/light/result.png" alt="" loading="lazy">
+            <div class="island"></div><div class="status"><span>9:41</span><svg viewBox="0 0 42 12" aria-hidden="true"><rect x="0" y="7" width="3" height="5" rx="1"/><rect x="5" y="5" width="3" height="7" rx="1"/><rect x="10" y="2.5" width="3" height="9.5" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/><rect x="24" y="1" width="16" height="10" rx="3" fill="none" stroke="currentColor" stroke-width="1.4"/><rect x="26" y="3" width="11" height="6" rx="1.5"/></svg></div>
+          </div></div>
+          <span class="num">2</span>
+          <div><h3>See the better buy</h3><p>Per litre, per kg or per piece, with the reason in a line.</p></div>
+        </div>
+        <div class="step">
+          <div class="phone"><div class="screen">
+            <img class="shot-dark" src="shots/dark/online.png" alt="An iPhone's prices on Shopee and Lazada, three sellers each" loading="lazy">
+            <img class="shot-light" src="shots/light/online.png" alt="" loading="lazy">
+            <div class="island"></div><div class="status"><span>9:41</span><svg viewBox="0 0 42 12" aria-hidden="true"><rect x="0" y="7" width="3" height="5" rx="1"/><rect x="5" y="5" width="3" height="7" rx="1"/><rect x="10" y="2.5" width="3" height="9.5" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/><rect x="24" y="1" width="16" height="10" rx="3" fill="none" stroke="currentColor" stroke-width="1.4"/><rect x="26" y="3" width="11" height="6" rx="1.5"/></svg></div>
+          </div></div>
+          <span class="num">3</span>
+          <div><h3>Check online</h3><p>For phones and gadgets: each platform's cheapest official sellers.</p></div>
+        </div>
+      </div>
+      <p class="note">Screens from the app. Online prices and sellers are examples.</p>
     </section>
-  </main>
+
+    <section id="score">
+      <div class="score">
+        <div class="phones">
+          <div class="phone"><div class="screen">
+            <img class="shot-dark" src="shots/dark/home.png" alt="Kira Kira's home: saved this month RM 0.51" loading="lazy">
+            <img class="shot-light" src="shots/light/home.png" alt="" loading="lazy">
+            <div class="island"></div><div class="status"><span>9:41</span><svg viewBox="0 0 42 12" aria-hidden="true"><rect x="0" y="7" width="3" height="5" rx="1"/><rect x="5" y="5" width="3" height="7" rx="1"/><rect x="10" y="2.5" width="3" height="9.5" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/><rect x="24" y="1" width="16" height="10" rx="3" fill="none" stroke="currentColor" stroke-width="1.4"/><rect x="26" y="3" width="11" height="6" rx="1.5"/></svg></div>
+          </div></div>
+          <div class="phone"><div class="screen">
+            <img class="shot-dark" src="shots/dark/saved.png" alt="Saved comparisons" loading="lazy">
+            <img class="shot-light" src="shots/light/saved.png" alt="" loading="lazy">
+            <div class="island"></div><div class="status"><span>9:41</span><svg viewBox="0 0 42 12" aria-hidden="true"><rect x="0" y="7" width="3" height="5" rx="1"/><rect x="5" y="5" width="3" height="7" rx="1"/><rect x="10" y="2.5" width="3" height="9.5" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/><rect x="24" y="1" width="16" height="10" rx="3" fill="none" stroke="currentColor" stroke-width="1.4"/><rect x="26" y="3" width="11" height="6" rx="1.5"/></svg></div>
+          </div></div>
+        </div>
+        <div>
+          <p class="eyebrow">( Keeps score )</p>
+          <h2>Small savings, counted.</h2>
+          <div class="big-number neon-text">RM 0.51</div>
+          <p>Every time you pick the winner, Kira Kira counts what you saved against the next-best option. Your month adds up on the home screen.</p>
+          <p>Comparisons stay on your phone, A to Z, with Chinese names filed by pinyin.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq">
+      <div class="section-head">
+        <p class="eyebrow">( Questions )</p>
+        <h2>Asked before you ask.</h2>
+      </div>
+      <div class="faq">
+        <details open>
+          <summary>Is Kira Kira free?</summary>
+          <p>Yes. No ads, no subscriptions and nothing to buy in the app.</p>
+        </details>
+        <details>
+          <summary>So how does it make money?</summary>
+          <p>When you buy through a link in Kira Kira, the platform, such as Shopee or Lazada, may pay us a commission. It never changes your price, or the order the prices are shown in.</p>
+        </details>
+        <details>
+          <summary>Does it upload my photos?</summary>
+          <p>No. Tags are read on your phone, and photos are never saved or sent anywhere. See the <a href="privacy.html">privacy policy</a>.</p>
+        </details>
+        <details>
+          <summary>Which price tags can it read?</summary>
+          <p>Printed shelf tags in Malaysian shops, including deals like “2 untuk” and “Beli 2 Percuma 1”, member prices (Harga Ahli), savings (Jimat) and prices per kg. If a tag won't read, type it in.</p>
+        </details>
+        <details>
+          <summary>Which online shops does it check?</summary>
+          <p>Shopee and Lazada, plus brands' own stores, starting with phones and gadgets.</p>
+        </details>
+        <details>
+          <summary>Do I need an account?</summary>
+          <p>No. Open the app and scan.</p>
+        </details>
+        <details>
+          <summary>When can I get it?</summary>
+          <p>Soon, on Google Play and the App Store.</p>
+        </details>
+      </div>
+    </section>
+
+    <section class="closing">
+      <p class="eyebrow">( Kira-kira: Malay for working it out )</p>
+      <h2>Let Kira Kira do the <span class="neon-text">kira-kira.</span></h2>
+      <p>Free, in English, Bahasa Melayu and 中文. Coming soon to Google Play and the App Store.</p>
+      <div class="actions">
+        <span class="pill">Coming soon to Google Play</span>
+        <span class="pill">Coming soon to the App Store</span>
+      </div>
+    </section>
+  </div>
 
   <footer>
-    <p>Questions? <a href="mailto:nic110397@gmail.com">nic110397@gmail.com</a></p>
-    <p><a href="privacy.html">Privacy policy</a> · © 2026 Kira Kira</p>
+    <div class="wrap">
+      <a class="brand" href="./"><img src="icon.png" alt=""><span class="wordmark neon-text">Kira Kira</span></a>
+      <span>Questions? <a href="mailto:nic110397@gmail.com">nic110397@gmail.com</a></span>
+      <a href="privacy.html">Privacy policy</a>
+      <span>© 2026 Kira Kira</span>
+    </div>
   </footer>
-</div>
 </body>
 </html>
