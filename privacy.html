@@ -16,17 +16,17 @@
   <div class="doc">
     <a class="brand" href="./"><img src="icon.png" alt=""><span class="wordmark neon-text">Kira Kira</span></a>
     <h1>Privacy policy</h1>
-    <p class="date">Effective 30 September 2026</p>
+    <p class="date">Effective 2 October 2026</p>
     <p>Kira Kira is a free price-comparison app for shoppers in Malaysia, made by an independent developer. This page explains what the app does with information. In short: there's no account, no ads and no tracking, and your photos never leave your phone.</p>
     <h2>What stays on your phone</h2>
     <ul>
       <li><strong>Price tags you scan.</strong> The camera picture is read on your phone by Google's ML Kit text recognition. It isn't saved or uploaded.</li>
-      <li><strong>Your location</strong>, if you allow it. The app uses your phone's approximate location, on the phone, to find your district for shop prices. The location itself is never sent anywhere or stored; the app only keeps the district it found.</li>
-      <li><strong>Your comparisons, basket and settings</strong>, such as saved comparisons, your shopping basket and budget, language, theme and your district for shop prices, are stored on your phone. Deleting the app deletes them.</li>
+      <li><strong>Your location</strong>, if you allow it. On the phone, the app uses it to find your district for shop prices, and, when you scan, the shop you're in, so the price tags you scan are marked with it. The location itself is never sent anywhere; the app keeps only the district it found, and the shops you've been to.</li>
+      <li><strong>Your comparisons, basket and settings</strong>, such as saved comparisons, your shopping basket and budget, the shops you've been to (their names, and where your phone was when you picked them), language, theme and your district for shop prices, are stored on your phone. Deleting the app deletes them.</li>
     </ul>
     <h2>What leaves your phone</h2>
     <ul>
-      <li><strong>Searches.</strong> When you search for a product, the words you type go to Kira Kira's price server. For prices in shops, your state and district go with them (found from your location, or picked by you), so that shops in your district come first. The app sends nothing that identifies you: no name, account or device ID, and never your phone's location. The server is hosted by Supabase and may run outside Malaysia. Like any web service, it keeps short-lived technical logs, which can include your internet (IP) address, to keep the service running and secure.</li>
+      <li><strong>Searches.</strong> When you search for a product, the words you type go to Kira Kira's price server. For prices in shops, your state and district go with them (found from your location, or picked by you), so that shops in your district come first. To tell which shop you're in, the app downloads the list of shops in your district (and any next to it) from the same server; only the state and district go with that request, and the nearest shop is worked out on your phone. The shop list comes from <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> (© OpenStreetMap contributors, ODbL). The app sends nothing that identifies you: no name, account or device ID, and never your phone's location. The server is hosted by Supabase and may run outside Malaysia. Like any web service, it keeps short-lived technical logs, which can include your internet (IP) address, to keep the service running and secure.</li>
       <li><strong>Text recognition.</strong> ML Kit sends Google measurements of how it performs and is used, never the picture, and may download updates to its models.</li>
       <li><strong>Searching an online store.</strong> When you tap Shopee or Lazada under a search, that store's own search opens with your words, in its app or your browser. For Lazada, the words first go to Kira Kira's server, which asks Lazada for an affiliate link to that search; the link tells Lazada the visit came from Kira Kira. From there, the store's own privacy policy applies.</li>
       <li><strong>Finding a shop.</strong> When you tap a shop, Google Maps opens with its name and address, and Google's privacy policy applies there.</li>
@@ -36,7 +36,7 @@
     <h2>Permissions</h2>
     <ul>
       <li><strong>Camera</strong>, to read price tags. You can type a price in instead.</li>
-      <li><strong>Location</strong> (approximate), to find your district for shop prices. You can pick your area instead.</li>
+      <li><strong>Location</strong>, to find your district for shop prices (approximate is enough) and the shop you're in when you scan (precise). You can pick your area and type the shop instead.</li>
       <li><strong>Internet</strong>, for shop prices, the online stores' search, and the text recognition described above.</li>
     </ul>
     <h2>Children</h2>
